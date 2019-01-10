@@ -1,36 +1,41 @@
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class TwoSum {
 	
-	public static void main(String args[]){
-		int[] nums1={2,7,11,15};
-		 for(int i=0;i<twoSum(nums1,9).length;i++){
-			 System.out.println(twoSum(nums1,9)[i]);
-		 }
+	public static int[] twoSum(int[] nums, int target) {
+		Map<Integer,Integer> hashMap=new HashMap<>();
+		int[] result=new int[2];
+		for(int i=0;i<nums.length;i++){
+			hashMap.put(nums[i],i);
+			
+		}
+		for(int i=0;i<nums.length;i++){
+			if(hashMap.containsKey(target-nums[i]) && hashMap.get(target-nums[i])!=i){
+				 //return new int[] { i, hashMap.get(target-nums[i])} ;
+				 result[0]=i;
+				 result[1]=hashMap.get(target-nums[i]);
+				 return result;
+				 }
+				}	
+				
+		 throw new IllegalArgumentException("No two sum solution");      
+		
+		
 		
 	}
+	
+	public static void main(String args[]){
+		int[] arr1={4,9,5};
+		int target=9;
+		int[] result=twoSum(arr1,target);
+		for(int i=0;i<result.length;i++){
+			System.out.println(result[i]);
+		}
+		
+		System.out.println(7%10);
+	}
 
-	public static int[] twoSum(int[] nums, int target) { 
-        
-        Map<Integer,Integer> hashMap=new HashMap<>(); 
-       
-        int[] indices=new int[2];
-        for(int i=0;i<nums.length;i++){
-            hashMap.put(nums[i],i);
-            
-        }
-        for(int j=0;j<nums.length;j++){
-            int dummy=target-nums[j];
-            if(hashMap.containsKey(dummy) && hashMap.get(dummy)!=j){
-                indices[0]=j;
-                indices[1]=hashMap.get(dummy);
-                hashMap.remove(nums[j]);
-                 
-                
-            }
-            
-        }
-        return indices;
-    }
 }
